@@ -2,5 +2,58 @@
 
     <div class="w-full max-w-2xl">
 
+        <!-- Header -->
+        <div class="header flex flex-row items-center gap-4 mb-8  ">
+            <div class="icon w-11 h-11 rounded-xl bg-teal-600 text-white flex items-center justify-center">
+                <i class="fa-solid fa-list-check text-white"></i>
+            </div>
+            <div class="title flex flex-col  ">
+                <h1 class="h1 font-bold text-black font-sans text-[25px]">TaskPad</h1>
+                <p class="text-[#8a8a8a] font-semibold">Organize your tasks efficiently</p>
+            </div>
+        </div>
+
+        <!-- Task input -->
+        <div class="flex flex-row justify-start  gap-3 ">
+
+            <input type="text" [(ngModel)]="newTaskTitle" placeholder="What do you need to do today?" class="flex-1 rounded-xl border border-gray-200 bg-white 
+            px-4 py-3 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-600 focus:border-teal-600">
+
+            <button (click)="addNewTask()" class="flex items-center gap-2 rounded-xl bg-teal-600 text-white px-5 py-3
+            text-sm shadow-sm font-semibold hover:opacity-90 active:scale-95 transition duration-150 cursor-pointer">
+                <i class="fa-solid fa-plus"></i>
+                <span>Add Task</span>
+            </button>
+        </div>
+
+
+        <!-- Task list -->
+        <div class="mt-8">
+            @for (task of tasksList; track $index) {
+            <div class="flex gap-1 items-center bg-white px-4 py-3 rounded-xl mb-3 shadow-sm">
+                <div class="left-side flex flex-1 items-center gap-3">
+
+                    <!-- radio button  -->
+                    <input type="checkbox" [checked]="task.status === 'completed'" (change)="toggleTask(task)"
+                        class="w-4 h-4 accent-teal-600 rounded-full" />
+
+                    <span>
+                        {{ task.title }}
+                    </span>
+                </div>
+
+                <div class="right-side">
+                    <button (click)="deleteTask(task)" class="text-gray-400 hover:text-gray-600">
+                        <i class="fa-solid fa-trash"></i>
+                    </button>
+
+                    <button class="ml-2 text-gray-400 hover:text-gray-600">
+                        <i class="fa-solid fa-pen-to-square"></i>
+                    </button>
+                </div>
+
+            </div>
+            }
+        </div>
     </div>
 </div>
