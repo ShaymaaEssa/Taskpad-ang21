@@ -28,7 +28,7 @@ export class Taskpad {
   }
 
   toggleTask(task:ITask){
-
+    this.taskService.updateTaskStatus(task.id, task.status === 'pending' ? 'completed' : 'pending');
   }
 
   deleteTask(task:ITask){
